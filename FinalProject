@@ -75,13 +75,6 @@ model = SVR(kernel= 'linear', gamma='auto')
 model.fit(Xtrain, ytrain.ravel()) 
 print(model)
 
-
-from sklearn.model_selection import cross_val_score
-scores = cross_val_score(model1,Xtest, ytest, cv=5)
-print(scores)
-print('Accuracy:%0.2f' % scores.mean(), scores.std()*2)
-
-
 prediction = model.predict(Xtest)
 
 fig = plt.figure(figsize = (10,10))
@@ -117,6 +110,11 @@ plt.scatter(Xtest, y_1,c="g", label="DecisionTreeRegressor", linewidth=2)
 plt.scatter(Xtest, y_2,c="c", label="AdaBoostRegressior", linewidth=2)
 plt.title("Boosted Decision Tree Regression")
 plt.legend()
+
+from sklearn.model_selection import cross_val_score
+scores = cross_val_score(model1,Xtest, ytest, cv=5)
+print(scores)
+print('Accuracy:%0.2f' % scores.mean(), scores.std()*2)
 
 plt.savefig('Decision Tree Regression.png')
 
